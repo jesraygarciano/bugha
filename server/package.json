@@ -1,7 +1,7 @@
 {
-  "name": "enamel_server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "bugha_server",
+  "version": "1.0.3",
+  "description": "More than a todo, keep organized and collaborate",
   "main": "app.js",
   "scripts": {
     "start": "node src/app.js",
@@ -19,5 +19,8 @@
     "mongoose": "^5.1.5",
     "nodemailer": "^4.6.7",
     "nodemon": "^1.17.5"
+  },
+  "nodemonConfig": {
+    "ext": "js,json,graphql"
   }
 }
