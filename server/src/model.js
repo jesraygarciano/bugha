@@ -1,4 +1,3 @@
-server/src/models.js
 const mongoose = require("mongoose")
 const moment = require('moment')
 const Schema = mongoose.Schema
@@ -18,3 +17,29 @@ const Folder = buildModel('Folder', {
   parent: { type: ObjectId, ref: 'Folder' },
 })
 module.exports.Folder = Folder
+
+module.exports.Team = Folder.discrminator('Team', new Schema({}, {timestamps: true}))
+
+module.exports.User = buildModel('User', {
+  name: {
+    type: String,
+    default: ''
+  },
+  firstname: String,
+  lastname: String,
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+  },
+  jobTitle: {
+    type: String,
+    default: ''
+  },
+  avatarColor: String,
+  team: { type: ObjectId, ref: 'Team' },
+  role: String,
+  status: String
+})
