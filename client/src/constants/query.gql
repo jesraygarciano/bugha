@@ -1,0 +1,6 @@
+mutation CaptureEmail($email: Sting!) {
+    captureEmail (email: $email) {
+        id
+        email
+    }
+}
