@@ -1,12 +1,15 @@
 const { GraphQLScalarType } = require('graphql')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const moment = require('moment')
+
 const { User } = require('./models')
 
 const resolvers = {
   Query: {
-    test (_, args, context) {
-      return 'Hello World!!'
-    }
+		test (_, args, context) {
+			return 'Hello World!!'
+		}
   },
   Mutation: {
     async captureEmail (_, {email}) {

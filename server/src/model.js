@@ -18,7 +18,8 @@ const Folder = buildModel('Folder', {
 })
 module.exports.Folder = Folder
 
-module.exports.Team = Folder.discrminator('Team', new Schema({}, {timestamps: true}))
+module.exports.Team = Folder.discriminator('Team', new Schema({
+}, {timestamps: true}))
 
 module.exports.User = buildModel('User', {
   name: {

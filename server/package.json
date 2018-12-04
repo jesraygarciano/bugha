@@ -22,5 +22,5 @@
   },
   "nodemonConfig": {
     "ext": "js,json,graphql"
-  }
+}
 }
