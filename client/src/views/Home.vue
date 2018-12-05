@@ -3,93 +3,81 @@
     <el-header>
     </el-header>
 
-    <el-main>
+<el-main>
       <div class="container-center">
-        <h2>Welcome!</h2>
-        <div>Enter your email address to start free trial</div>
-
+        <h2>Log in</h2>
+        
         <div v-if="error" class="error">
           {{ error }}
         </div>
 
-        <el-form ref="form" :model="form">
+<el-form ref="form" :model="form">
           <el-form-item>
             <label>Email</label>
             <el-input v-model="form.email" placeholder="Email"></el-input>
+            <label>Password</label>
+            <el-input v-model="form.password" type="password" placeholder="Password"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button @click="capture" type="primary">Create my bugha account</el-button>
+            <el-button type="primary" @click.once="login">Log in</el-button>
           </el-form-item>
         </el-form>
 
-        <div>
-          <span>Already have an enamel account?</span>
-          <router-link :to="{name: 'login'}" class="link">Log in</router-link>
-        </div>
-
-        <div v-if="submitted">
-          <div>Thank you!</div>
-          <div>Please check your email.</div>
+<div>
+          <span>Don't have an account?</span>
+          <router-link :to="{name: 'home'}" class="link">Create an account</router-link>
         </div>
       </div>
 
-    </el-main>
+</el-main>
   </el-container>
 
 </template>
 
 <script>
-    import { CaptureEmail } from '../constants/query.gql'
-    import { validateEmail } from '@/helpers/helpers'
+import { Login } from '../constants/query.gql'
 
-
-  export default {
-
-    data() {
-      return {
-        submitted: false,
-        error: false,
-        form: {
-          email: '',
-        }
+export default {
+  data() {
+    return {
+      error: false,
+      form: {
+        email: '',
+        password: '',
+      }
+    }
+  },
+  methods: {
+    async login() {
+      const { email, password } = this.form
+      if (email && password) {
+        this.$apollo.mutate({
+          mutation: Login,
+          variables: { email, password }
+        }).then(async (data) => {
+          const login = data.data.login
+          const id = login.user.id
+          const token = login.token
+          this.saveUserData(id, token)
+          // this.$router.push({name: 'workspace'})
+          console.log('success')
+        }).catch((error) => {
+          this.error = 'Invalid email or password'
+          console.log(error)
+        })
       }
     },
-
-   methods: {
-    capture() {
-      const {email} = this.form
-      if (!email || !validateEmail(email)) {
-        this.error = 'Please enter a valid email'
-        return
-      }
-      this.$apollo.mutate({
-        mutation: CaptureEmail,
-        variables: {email}
-      }).then(({data}) => {
-        this.submitted = true
-        this.error = false
-        // For development only
-        console.log(data.captureEmail.id)
-      }).catch((error) => {
-        if (error.graphQLErrors.length >= 1) {
-          this.error = error.graphQLErrors[0].message            
-        } else {
-          this.error = 'Something went wrong'
-        }
-        console.log(error)
-      })
-
+    saveUserData (id, token) {
+      localStorage.setItem('user-id', id)
+      localStorage.setItem('user-token', token)
+      this.$root.$data.userId = localStorage.getItem('user-id')
     },
   }
 }
 </script>
 
-<style scoped lang="scss">
-  .el-button {
-    width: 100%;
-  }
-
-  .error {
-    padding-top: 10px;
-  }
+<style scoped>
+.el-button {
+  width: 100%;
+}
 </style>
