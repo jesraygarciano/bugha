@@ -13,19 +13,19 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home,
-      meta: { title: 'Bugha' }
+      meta: { title: 'enamel' }
     },
     {
       path: '/signup/:id',
       name: 'signup',
       component: Signup,
-      meta: { title: 'Signup - Bugha' }
+      meta: { title: 'Signup - enamel' }
     },
     {
-      path: '/login',
-      name: 'login',
-      component: Login,
-      meta: { title: 'Login - bugha'}
+    	path: '/login',
+    	name: 'login',
+    	component: Login,
+    	meta: { title: 'Login - enamel' }
     }
   ]
 })

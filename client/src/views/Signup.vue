@@ -3,15 +3,15 @@
     <el-header >
     </el-header>
 
-<el-main>
+    <el-main>
       <div class="container-center">
-        <div>Welcome to enamel! Finish setting up your account</div>
+        <div>Welcome to enamel! Finish setting up your account</div>        
 
-<div v-if="error" class="error">
+        <div v-if="error" class="error">
           {{ error }}
         </div>
 
-<el-form ref="form" :model="form">
+        <el-form ref="form" :model="form">
           <el-form-item>
             <label>First name</label>
             <el-input v-model="form.firstname" placeholder="Your first name"></el-input>
@@ -25,9 +25,9 @@
           </el-form-item>
         </el-form>
 
-</div>
+      </div>
 
-</el-main>
+    </el-main>
   </el-container>
 
 </template>
@@ -92,3 +92,4 @@ export default {
   padding-top: 10px;
 }
 </style>
+
