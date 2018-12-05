@@ -5,4 +5,13 @@ mutation CaptureEmail($email: Sting!) {
     }
 }
 
-mutation Signup($id: String!, $fistname:)
+mutation Signup($id: String!, $fistname: String!,
+$lastname: String!, $password: String!) {
+    signup(id: $id, firstname: $firstname, lastname: $lastname, password: $password) {
+        token
+        user {
+            id
+            email
+        }
+    }
+}
