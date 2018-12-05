@@ -5,20 +5,20 @@ import Signup from './views/Signup.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
       path: '/',
       name: 'home',
       component: Home,
-      meta: { title: 'Bugha'}
+      meta: { title: 'enamel' }
     },
     {
       path: '/signup/:id',
       name: 'signup',
       component: Signup,
-      meta: { title: 'Signup - Bugha'}
+      meta: { title: 'Signup - enamel' }
     },
   ]
 })
