@@ -4,3 +4,5 @@ mutation CaptureEmail($email: Sting!) {
         email
     }
 }
+
+mutation Signup($id: String!, $fistname:)
