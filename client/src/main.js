@@ -8,6 +8,8 @@ import { enableExperimentalFragmentVariables } from 'graphql-tag'
 import VueApollo from 'vue-apollo'
 import ElementUI from 'element-ui'
 
+/*will be adding another dependencies here**/
+
 import App from './App.vue'
 import router from './router'
 import store from './store'
